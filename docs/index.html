@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esoteric — a cross-cultural dictionary of symbols</title>
+<meta name="description" content="Look up a symbol and see what different traditions have made of it, each attributed and each sourced. It never gives a single meaning.">
+<meta name="theme-color" content="#101418">
+<style>
+  :root{--bg:#f6f5f2;--panel:#fff;--ink:#14181d;--muted:#5d666f;--line:#d9d6cf;--accent:#6b4a2a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+  main{max-width:760px;margin:0 auto;padding:48px 20px 64px}
+  h1{font-size:33px;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .lede{font-size:18px;color:var(--muted);margin:0 0 26px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:9px}
+  .status{margin:26px 0;padding:14px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:var(--panel);font-size:14px}
+  .status b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+  h2{font-size:17px;margin:30px 0 8px}
+  ul{padding-left:20px}li{margin:4px 0}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#eeede9;padding:1px 5px;border-radius:4px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .note{margin:22px 0 0;padding:12px 14px;border:1px solid #e5d9c6;border-left:4px solid var(--accent);border-radius:9px;background:#fbf7f0;color:#5a4526;font-size:13.5px}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+  a{color:var(--accent)}
+</style></head>
+<body><main>
+  <h1>Esoteric</h1>
+  <p class="lede">A cross-cultural dictionary of symbols. The same symbol in two cultures is <strong>two entries</strong>, each attributed and each sourced.</p>
+  <a class="cta" href="play/index.html">Open Esoteric</a>
+
+  <p class="note">This app does not tell you what a symbol means. It shows you what traditions have made of it, and where that was read.</p>
+
+  <div class="status">
+    <b>Status</b>
+    Built and working offline: a bundled dictionary where every entry names its tradition and its source; search that returns entries from more than one tradition and says so; a search with no match that says so with the terms used and offers no nearby symbol; and your own notes, with a note on an unknown symbol kept as <em>unsorted</em> rather than filed under the wrong one.
+    <br><b>Release</b>: Windows EXE, Android APK and Linux binary, built from this source in CI — <a href="https://github.com/drsamonline/app-esoteric/releases/tag/app-latest">app-latest</a>.
+    <br><b>Not built</b>: a complete dictionary. The bundle is a <strong>starter set</strong> of seven symbols and seventeen entries, each attributed to a named reference work — and the app says to check the source rather than repeat it.
+  </div>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Looks up a symbol across traditions, one entry per tradition, each with its source.</li>
+    <li>Says when more than one tradition reads the same symbol — which is the point.</li>
+    <li>Keeps your notes against a symbol, or as unsorted if the symbol is not in the bundle.</li>
+    <li>Works with no network at all: the entries are bundled, and nothing is fetched.</li>
+  </ul>
+
+  <h2>What it will not do</h2>
+  <ul>
+    <li><strong>Give a single meaning.</strong> Meanings are attributed and sourced, never asserted.</li>
+    <li><strong>Offer a nearby symbol as the one you asked for.</strong> A near miss shown as an answer is worse than nothing.</li>
+    <li><strong>File a note under a symbol it does not have.</strong> It is kept as unsorted.</li>
+    <li><strong>Lose the dictionary to a broken note file.</strong> The bundled entries are read-only.</li>
+  </ul>
+
+  <h2>When things go wrong</h2>
+  <table>
+    <tr><th>Case</th><th>What happens</th></tr>
+    <tr><td>Bad input</td><td>No match → said with the terms used, no nearby symbol offered. A note with no text → refused.</td></tr>
+    <tr><td>No network</td><td>Nothing changes; the entries are bundled.</td></tr>
+    <tr><td>Storage full or unavailable</td><td>The note is not saved and the app says so; reading and search continue from the bundle.</td></tr>
+    <tr><td>Corrupt saved state</td><td>The note file is reported and offered for export; the bundled entries cannot be corrupted by use.</td></tr>
+  </table>
+
+  <h2>How to run it</h2>
+  <ul>
+    <li><strong>Here</strong>: <a href="play/index.html">play/index.html</a>, or install it from your browser's menu.</li>
+    <li><strong>Offline file</strong>: open <code>docs/play/index.html</code> straight from disk.</li>
+    <li><strong>Tests</strong>: <code>node tests/self-tests.js</code>.</li>
+  </ul>
+
+  <footer>PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin · <a href="https://github.com/drsamonline/app-esoteric">source</a></footer>
+</main></body></html>

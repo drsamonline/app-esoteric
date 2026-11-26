@@ -1,0 +1,15 @@
+{
+  "name": "Esoteric — a cross-cultural dictionary of symbols",
+  "short_name": "Esoteric",
+  "description": "Look up a symbol and see what different traditions have made of it, each attributed and each sourced. It never gives a single meaning.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#101418",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

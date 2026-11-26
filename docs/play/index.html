@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esoteric — a cross-cultural dictionary of symbols</title>
+<meta name="description" content="Look up a symbol and see what different traditions have made of it, each attributed and each sourced. It never gives a single meaning.">
+<meta name="theme-color" content="#101418">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root{--bg:#f6f5f2;--panel:#fff;--ink:#14181d;--muted:#5d666f;--line:#d9d6cf;--accent:#6b4a2a;--accent-ink:#fff;
+        --bad:#a02a2a;--warn:#8a5a00;--ok:#1f5f4f;--mono:ui-monospace,Menlo,Consolas,monospace;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:15px}
+  header.top{border-bottom:1px solid var(--line);background:var(--panel);padding:14px 20px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+  header.top h1{font-size:18px;margin:0}
+  header.top p{margin:0;color:var(--muted);font-size:13px}
+  header.top a{margin-left:auto;color:var(--accent);font-size:13px;text-decoration:none;border-bottom:1px solid currentColor}
+  main{max-width:860px;margin:0 auto;padding:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+  .card h2{font-size:15px;margin:0 0 6px}
+  .card p.claim{margin:0 0 8px;color:var(--muted);font-size:13px}
+  label.fld{display:block;font-size:11px;color:var(--muted);margin:8px 0 4px;text-transform:uppercase;letter-spacing:.06em}
+  input[type=text],textarea{font:inherit;font-size:14px;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:#fff;color:inherit}
+  textarea{resize:vertical}
+  button{font:inherit;font-size:13px;padding:8px 13px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+  button.small{padding:4px 9px;font-size:12px}
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .bar .grow{flex:1}
+  .hint{color:var(--muted);font-size:12px}
+  .status{margin:10px 0;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);font-size:13px;display:none}
+  .status.show{display:block}
+  .status.bad{border-color:#e3b7b7;background:#fdf3f3;color:#7d1f1f}
+  .status.ok{border-color:#b7d8cd;background:#f2f9f6;color:#14503f}
+  .status.warn{border-color:#e8d5ae;background:#fdf8ee;color:#6b4700}
+  ul.entries{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:9px}
+  ul.entries li{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:10px 12px;background:#fbfaf8}
+  ul.entries li .tr{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);font-weight:700}
+  ul.entries li .rd{margin:3px 0 5px}
+  ul.entries li .src{font-size:12px;color:var(--muted);font-style:italic}
+  ul.entries li.unsorted{border-left-color:#c9a05a;background:#fdf8ee}
+  .note{margin:10px 0 0;padding:10px 12px;border:1px solid #e5d9c6;border-left:4px solid var(--accent);border-radius:8px;background:#fbf7f0;font-size:13px;color:#5a4526}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .chips button{font-size:12px;padding:4px 10px;border-radius:999px}
+  footer{max-width:860px;margin:0 auto;padding:18px 20px 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Esoteric</h1>
+  <p>A cross-cultural dictionary of symbols. Every reading is attributed and sourced; it never gives you the meaning.</p>
+  <a href="../index.html">about</a>
+</header>
+
+<main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+
+  <section class="card">
+    <h2>Look up a symbol</h2>
+    <div class="bar" style="margin-top:0">
+      <input type="text" id="q" placeholder="lotus, serpent, tree, circle, moon, lion, swastika" style="flex:1">
+      <button class="primary" type="button" id="searchBtn">Look it up</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <p class="note" id="attrNote"></p>
+    <div class="hint" id="searchSays" style="margin-top:8px"></div>
+    <ul class="entries" id="hitList"></ul>
+  </section>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <section class="card">
+      <h2>A note</h2>
+      <p class="claim">A note with no symbol attached is kept as <strong>unsorted</strong> — a note filed under the wrong symbol is worse than one waiting.</p>
+      <label class="fld" for="nText">The note</label><textarea id="nText" rows="3"></textarea>
+      <label class="fld" for="nSymbol">Against which symbol</label><input type="text" id="nSymbol" placeholder="e.g. lotus">
+      <div class="bar"><button class="primary" type="button" id="noteBtn">Keep it</button><span class="grow"></span><span class="hint" id="noteSays"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>Your notes</h2>
+      <ul class="entries" id="noteList"></ul>
+      <div class="hint" id="unsortedSays"></div>
+    </section>
+  </div>
+
+  <div class="bar">
+    <button type="button" class="small" id="exportBtn">Export the notes</button>
+    <span class="hint" id="ioNote"></span>
+  </div>
+
+  <footer>
+    Every reading in this app is attributed to a tradition and a source, and the bundle is a small starter set: check the source before you rely on it.
+    The app does not tell you what a symbol means. Reading and search work with no network at all.
+    <br>PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin ·
+    <a href="https://github.com/drsamonline/app-esoteric/releases/tag/app-latest">Windows, Android and Linux builds</a>
+  </footer>
+</main>
+
+<script src="web-kit.js"></script>
+<script src="export-kit.js"></script>
+<script src="esoteric-core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
