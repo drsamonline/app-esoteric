@@ -9,6 +9,7 @@ attributed and each sourced — and the app never tells you what a symbol means.
 - **Plan row:** #21 of 37 in `drsamonline/forge` → `QUEUE/PLAN.json`
 - **Specs absorbed:** `app-symbology` (lead), `app-tree-of-life`, `app-sacred-geometry`, `app-mantra`
 - **Licence:** PolyForm Noncommercial 1.0.0
+- **Sponsor:** [github.com/sponsors/drsamonline](https://github.com/sponsors/drsamonline) — free, offline, no account
 
 ## Status
 
